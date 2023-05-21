@@ -1,35 +1,21 @@
+import 'package:hackathon_front/util/kv_storage.dart';
+
 import '../abstract/index.dart';
-import '../base.dart';
 
-class UserStorageImpl extends StorageImplBase implements UserStorageBase {
-  late final String _jwtTokenKey = '$fullNamespace/jwtToken';
-  late final String _uidKey = '$fullNamespace/uid';
+class UserStorageImpl implements UserStorageBase {
+  static const _jwtTokenKey = 'jwtToken';
+  static const _uidKey = 'uid';
+  KvStorage kv;
 
-  UserStorageImpl({
-    required super.parentNamespace,
-    required super.prefs,
-  }) : super(namespace: 'user');
+  UserStorageImpl(this.kv);
 
   @override
-  String? get jwtToken => prefs.getString(_jwtTokenKey);
+  String? get jwtToken => kv.get<String>(_jwtTokenKey);
   @override
-  set jwtToken(String? value) {
-    if (value == null) {
-      prefs.remove(_jwtTokenKey);
-    } else {
-      prefs.setString(_jwtTokenKey, value);
-    }
-  }
+  set jwtToken(String? value) => kv.set(_jwtTokenKey, value);
 
   @override
-  int? get uid => prefs.getInt(_uidKey);
-
+  int? get uid => kv.get<int>(_uidKey);
   @override
-  set uid(int? value) {
-    if (value == null) {
-      prefs.remove(_uidKey);
-    } else {
-      prefs.setInt(_uidKey, value);
-    }
-  }
+  set uid(int? value) => kv.set(_uidKey, value);
 }

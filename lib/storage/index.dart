@@ -1,23 +1,21 @@
 import 'package:hackathon_front/storage/abstract/index.dart';
 import 'package:hackathon_front/storage/impl/index.dart';
-
-import 'base.dart';
+import 'package:hackathon_front/util/kv_storage.dart';
 
 abstract class StorageProvider {
   UserStorageBase get user;
 }
 
-class StorageProviderImpl extends StorageImplBase implements StorageProvider {
-  StorageProviderImpl({
-    required super.prefs,
-  }) : super(
-          parentNamespace: '/',
-          namespace: 'hackathon',
-        );
+class StorageProviderImpl implements StorageProvider {
+  final KvStorage kv;
+
+  StorageProviderImpl(this.kv);
 
   @override
   UserStorageBase get user => UserStorageImpl(
-        parentNamespace: fullNamespace,
-        prefs: prefs,
+        KvStorageWithNamespace(
+          source: kv,
+          namespace: 'user',
+        ),
       );
 }
