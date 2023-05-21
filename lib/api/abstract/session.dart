@@ -39,5 +39,8 @@ abstract class SessionApi {
   });
 
   /// 请求发送验证码
-  Future<void> requestAuthCode(AuthInfo info);
+  Future<void> requestAuthCode({
+    required AuthMode mode,
+    required AuthInfo info,
+  });
 }
