@@ -2,32 +2,32 @@ import 'package:hackathon_front/api/abstract/index.dart';
 
 class PostsApiImpl extends PostsApi {
   @override
-  void bookmarkPost(int pid, BookmarkType type) {
+  Future<void> bookmarkPost(int pid, BookmarkType type) {
     // TODO: implement bookmarkPost
+    throw UnimplementedError();
   }
 
   @override
-  void cancelBookmarkPost(int pid, BookmarkType type) {
+  Future<void> cancelBookmarkPost(int pid, BookmarkType type) {
     // TODO: implement cancelBookmarkPost
+    throw UnimplementedError();
   }
 
   @override
-  Post createPost({
-    required String title,
-    required String content,
-    required String cover,
-  }) {
+  Future<Post> createPost(
+      {required String title, required String content, required String cover}) {
     // TODO: implement createPost
     throw UnimplementedError();
   }
 
   @override
-  void deletePost(int pid) {
+  Future<void> deletePost(int pid) {
     // TODO: implement deletePost
+    throw UnimplementedError();
   }
 
   @override
-  Post editPost(
+  Future<Post> editPost(
       {required int pid,
       required String title,
       required String content,
@@ -37,7 +37,7 @@ class PostsApiImpl extends PostsApi {
   }
 
   @override
-  Post getPost(int pid) {
+  Future<Post> getPost(int pid) {
     // TODO: implement getPost
     throw UnimplementedError();
   }
@@ -49,13 +49,14 @@ class PostsApiImpl extends PostsApi {
   }
 
   @override
-  List<Post> listPosts({int? tagId}) {
+  Future<List<Post>> listPosts({int? tagId}) {
     // TODO: implement listPosts
     throw UnimplementedError();
   }
 
   @override
-  List<Post> searchPosts({required String query, required PageInfo pageInfo}) {
+  Future<List<Post>> searchPosts(
+      {required String query, required PageInfo pageInfo}) {
     // TODO: implement searchPosts
     throw UnimplementedError();
   }

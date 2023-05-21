@@ -3,16 +3,16 @@ import 'package:hackathon_front/api/abstract/page_util.dart';
 class UserInfo {
   final int? uid;
   final String? email;
-  final String nickname;
-  final String avatar;
-  final String phone;
+  final String? nickname;
+  final String? avatar;
+  final String? sms;
 
   const UserInfo({
     this.uid,
     this.email,
-    required this.nickname,
-    required this.avatar,
-    required this.phone,
+    this.nickname,
+    this.avatar,
+    this.sms,
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {
@@ -21,7 +21,7 @@ class UserInfo {
       email: json['email'],
       nickname: json['nickname'],
       avatar: json['avatar'],
-      phone: json['phone'],
+      sms: json['sms'],
     );
   }
 
@@ -29,9 +29,9 @@ class UserInfo {
     return {
       if (uid != null) 'uid': uid,
       if (email != null) 'email': email,
-      'nickname': nickname,
-      'avatar': avatar,
-      'phone': phone,
+      if (nickname != null) 'nickname': nickname,
+      if (avatar != null) 'avatar': avatar,
+      if (sms != null) 'sms': sms,
     };
   }
 }
@@ -80,7 +80,7 @@ enum FootprintType {
 
 abstract class UsersApi {
   /// 获取用户信息
-  Future<UserInfo> getUserInfo();
+  Future<UserInfo> getUserInfo(int uid);
 
   /// 更新用户信息
   Future<void> updateUserInfo(UserInfo info);

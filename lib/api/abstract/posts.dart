@@ -47,18 +47,18 @@ enum BookmarkType {
 
 abstract class PostsApi {
   /// 根据标签获取推荐的文章列表
-  List<Post> listPosts({
+  Future<List<Post>> listPosts({
     int? tagId,
   });
 
   /// 搜索文章
-  List<Post> searchPosts({
+  Future<List<Post>> searchPosts({
     required String query,
     required PageInfo pageInfo,
   });
 
   /// 获取文章内容
-  Post getPost(int pid);
+  Future<Post> getPost(int pid);
 
   /// 获取文章评论
   List<Post> getPostComments({
@@ -67,14 +67,14 @@ abstract class PostsApi {
   });
 
   /// 创建文章，根据标题、内容、封面
-  Post createPost({
+  Future<Post> createPost({
     required String title,
     required String content,
     required String cover,
   });
 
   /// 编辑文章，根据文章id
-  Post editPost({
+  Future<Post> editPost({
     required int pid,
     required String title,
     required String content,
@@ -82,16 +82,16 @@ abstract class PostsApi {
   });
 
   /// 删除文章，根据文章id
-  void deletePost(int pid);
+  Future<void> deletePost(int pid);
 
   /// 点赞文章，根据文章id
-  void bookmarkPost(
+  Future<void> bookmarkPost(
     int pid,
     BookmarkType type,
   );
 
   /// 取消点赞文章，根据文章id
-  void cancelBookmarkPost(
+  Future<void> cancelBookmarkPost(
     int pid,
     BookmarkType type,
   );

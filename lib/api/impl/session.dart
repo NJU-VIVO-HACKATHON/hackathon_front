@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:hackathon_front/api/abstract/index.dart';
+import 'package:hackathon_front/global/index.dart';
+
+final _log = GlobalObjects.logger;
 
 class SessionApiImpl extends SessionApi {
   final Dio dio;
@@ -10,10 +13,12 @@ class SessionApiImpl extends SessionApi {
     required AuthMode mode,
     required AuthInfo info,
   }) async {
+    _log.d('getAuthToken: $mode, $info');
     final resp = await dio.post('/session', data: {
-      'mode': mode.toString(),
+      'mode': mode.name,
       'auth': info.toJson(),
     });
+    _log.d('getAuthToken: $resp');
     return resp.data['token'];
   }
 

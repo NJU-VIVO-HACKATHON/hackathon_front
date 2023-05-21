@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hackathon_front/api/abstract/index.dart';
+import 'package:hackathon_front/api/impl/session.dart';
+import 'package:hackathon_front/api/impl/users.dart';
 
 abstract class ApiProvider {
   UsersApi get user;
@@ -21,16 +23,14 @@ class ApiProviderImpl extends ApiProvider {
   PostsApi get post => throw UnimplementedError();
 
   @override
-  // TODO: implement session
-  SessionApi get session => throw UnimplementedError();
+  SessionApi get session => SessionApiImpl(dio);
 
   @override
   // TODO: implement tag
   TagsApi get tag => throw UnimplementedError();
 
   @override
-  // TODO: implement user
-  UsersApi get user => throw UnimplementedError();
+  UsersApi get user => UsersApiImpl(dio);
 }
 
 class ApiProviderMock extends ApiProvider {

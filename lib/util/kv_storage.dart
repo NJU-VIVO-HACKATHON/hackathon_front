@@ -25,19 +25,18 @@ class KvStoragePreferenceImpl implements KvStorage {
     if (!prefs.containsKey(key)) {
       return null;
     }
-    if (T is String) {
-      return prefs.getString(key) as T;
-    } else if (T is int) {
-      return prefs.getInt(key) as T;
-    } else if (T is double) {
-      return prefs.getDouble(key) as T;
-    } else if (T is bool) {
-      return prefs.getBool(key) as T;
-    } else if (T is List<String>) {
-      return prefs.getStringList(key) as T;
-    } else if (T is Map<String, dynamic>) {
-      final value = prefs.getString(key)!;
-      return jsonDecode(value) as T;
+    if (T == String) {
+      return prefs.getString(key) as T?;
+    } else if (T == int) {
+      return prefs.getInt(key) as T?;
+    } else if (T == double) {
+      return prefs.getDouble(key) as T?;
+    } else if (T == bool) {
+      return prefs.getBool(key) as T?;
+    } else if (T == List<String>) {
+      return prefs.getStringList(key) as T?;
+    } else if (T == Map<String, dynamic>) {
+      return jsonDecode(prefs.getString(key)!) as T?;
     } else {
       throw UnsupportedError('Unsupported type: $T');
     }
