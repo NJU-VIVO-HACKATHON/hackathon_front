@@ -17,8 +17,6 @@ class App extends StatelessWidget {
   Widget buildWidgetWithKeyboardListener(Widget child) {
     return KeyboardListener(
       onKeyEvent: (event) {
-        _log.d('按键事件: ${event.logicalKey}');
-
         if (event is KeyUpEvent &&
             LogicalKeyboardKey.escape == event.logicalKey) {
           _log.d('松开返回键');
@@ -36,14 +34,15 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final app = MaterialApp(
       title: 'Hackathon Front',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: () {
-        return InterestedPage();
         final userStorage = GlobalObjects.storageProvider.user;
         if (userStorage.uid == null) {
           return const LoginModeSelectorPage();
+        } else {
+          return const IndexPage();
         }
-        return const IndexPage();
       }(),
       builder: EasyLoading.init(),
       scrollBehavior: const MaterialScrollBehavior().copyWith(

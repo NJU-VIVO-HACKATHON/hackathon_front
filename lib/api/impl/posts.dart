@@ -1,10 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:hackathon_front/api/abstract/index.dart';
 
 class PostsApiImpl extends PostsApi {
+  final Dio dio;
+  PostsApiImpl(this.dio);
   @override
-  Future<void> bookmarkPost(int pid, BookmarkType type) {
-    // TODO: implement bookmarkPost
-    throw UnimplementedError();
+  Future<void> bookmarkPost(int pid, BookmarkType type) async {
+    await dio.post('/posts/$pid/bookmark/${type.name}');
   }
 
   @override
@@ -15,15 +17,20 @@ class PostsApiImpl extends PostsApi {
 
   @override
   Future<Post> createPost(
-      {required String title, required String content, required String cover}) {
-    // TODO: implement createPost
-    throw UnimplementedError();
+      {required String title,
+      required String content,
+      required String cover}) async {
+    final resp = await dio.post('/posts', data: {
+      'title': title,
+      'content': content,
+      'cover': cover,
+    });
+    return Post.fromJson(resp.data);
   }
 
   @override
-  Future<void> deletePost(int pid) {
-    // TODO: implement deletePost
-    throw UnimplementedError();
+  Future<void> deletePost(int pid) async {
+    await dio.delete('/posts/$pid');
   }
 
   @override
@@ -37,27 +44,34 @@ class PostsApiImpl extends PostsApi {
   }
 
   @override
-  Future<Post> getPost(int pid) {
-    // TODO: implement getPost
-    throw UnimplementedError();
+  Future<Post> getPost(int pid) async {
+    final resp = await dio.get('/posts/$pid');
+    return Post.fromJson(resp.data);
   }
 
   @override
-  List<Post> getPostComments({required int pid, required PageInfo pageInfo}) {
+  Future<List<Post>> getPostComments(
+      {required int pid, required PageInfo pageInfo}) {
     // TODO: implement getPostComments
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Post>> listPosts({int? tagId}) {
-    // TODO: implement listPosts
-    throw UnimplementedError();
+  Future<List<Post>> listPosts({int? tagId}) async {
+    final resp = await dio.get('/posts', queryParameters: {
+      if (tagId != null) 'tag': tagId,
+    });
+    return resp.data.map((e) => Post.fromJson(e));
   }
 
   @override
   Future<List<Post>> searchPosts(
-      {required String query, required PageInfo pageInfo}) {
-    // TODO: implement searchPosts
-    throw UnimplementedError();
+      {required String query, required PageInfo pageInfo}) async {
+    final resp = await dio.get('/posts', queryParameters: {
+      'q': query,
+      'page': pageInfo.pageNum,
+      'pageSize': pageInfo.pageSize,
+    });
+    return resp.data.map((e) => Post.fromJson(e));
   }
 }

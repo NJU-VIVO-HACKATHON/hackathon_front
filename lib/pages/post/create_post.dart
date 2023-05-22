@@ -2,6 +2,9 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hackathon_front/global/index.dart';
+import 'package:hackathon_front/util/aigc.dart';
+
+import 'preview_page.dart';
 
 final _log = GlobalObjects.logger;
 
@@ -21,6 +24,60 @@ class _CreatePostPageState extends State<CreatePostPage> {
   void dispose() {
     _titleController.dispose();
     super.dispose();
+  }
+
+  Future<String?> showAIGCDialog() async {
+    TextEditingController controller = TextEditingController();
+    return await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('请输入AI提示词: '),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: controller,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // 生成图像
+                  TextButton(
+                    onPressed: () async {
+                      EasyLoading.show(status: 'AI生成中...');
+                      String content = await generateContentByAI(
+                        controller.text,
+                        GenMode.image,
+                      );
+                      EasyLoading.showSuccess('生成成功！');
+                      if (!mounted) return;
+                      Navigator.of(context).pop('![]($content)');
+                    },
+                    child: const Text('生成图像'),
+                  ),
+                  // 生成文本
+                  TextButton(
+                    onPressed: () async {
+                      EasyLoading.show(status: 'AI生成中...');
+                      String content = await generateContentByAI(
+                        controller.text,
+                        GenMode.text,
+                      );
+                      EasyLoading.showSuccess('生成成功！');
+                      if (!mounted) return;
+                      Navigator.of(context).pop(content);
+                    },
+                    child: const Text('生成文本'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -72,6 +129,25 @@ class _CreatePostPageState extends State<CreatePostPage> {
                     onPressed: () {},
                     icon: const Icon(Icons.image),
                   ),
+                  IconButton(
+                    onPressed: () async {
+                      String? content = await showAIGCDialog();
+                      print(content);
+                      _contentController.text += content ?? '';
+                    },
+                    icon: const Icon(Icons.article),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return PreviewPage(
+                                title: _titleController.text,
+                                content: _contentController.text);
+                          },
+                        ));
+                      },
+                      icon: Icon(Icons.open_in_browser_outlined))
                 ],
               ),
               ElevatedButton(

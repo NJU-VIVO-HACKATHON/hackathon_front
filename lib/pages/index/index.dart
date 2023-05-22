@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_front/pages/index/profile/index.dart';
+import 'package:hackathon_front/pages/login/interested.dart';
 import 'package:hackathon_front/pages/post/create_post.dart';
 
 import 'recommend/index.dart';
@@ -13,6 +14,17 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1), () {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => InterestedPage(),
+      ));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

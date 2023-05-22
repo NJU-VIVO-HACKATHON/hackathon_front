@@ -61,7 +61,7 @@ abstract class PostsApi {
   Future<Post> getPost(int pid);
 
   /// 获取文章评论
-  List<Post> getPostComments({
+  Future<List<Post>> getPostComments({
     required int pid,
     required PageInfo pageInfo,
   });

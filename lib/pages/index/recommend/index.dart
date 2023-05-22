@@ -6,27 +6,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 List<String> imgList = [
-  'https://bkimg.cdn.bcebos.com/pic/500fd9f9d72a6059252d1977427a239b033b5bb50c05?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxNTA=,g_7,xp_5,yp_5/format,f_auto',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0624%2Fca3f3547j00qv6yuq002ic000mn0148c.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1636620826&t=1f7e60c5d4a5baadafbae5d25dfdae39',
-  'https://bkimg.cdn.bcebos.com/pic/0d338744ebf81a4c510f10a4bd647759252dd42a0805?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyMjA=,g_7,xp_5,yp_5/format,f_auto',
-  'https://upload-images.jianshu.io/upload_images/6865547-100e574111cf0696.png?imageMogr2/auto-orient/strip|imageView2/2/w/507/format/webp',
-  'https://bkimg.cdn.bcebos.com/pic/500fd9f9d72a6059252d1977427a239b033b5bb50c05?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxNTA=,g_7,xp_5,yp_5/format,f_auto',
-  'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a788337365419c971a94a5fbdbc4f8~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp?',
-  'https://upload-images.jianshu.io/upload_images/6865547-100e574111cf0696.png?imageMogr2/auto-orient/strip|imageView2/2/w/507/format/webp',
-  'https://bkimg.cdn.bcebos.com/pic/0ff41bd5ad6eddc451dad5965395a1fd5266d0169502?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto',
-  'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a788337365419c971a94a5fbdbc4f8~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp?',
-  'https://upload-images.jianshu.io/upload_images/6865547-100e574111cf0696.png?imageMogr2/auto-orient/strip|imageView2/2/w/507/format/webp',
-  'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76a788337365419c971a94a5fbdbc4f8~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp?',
-  'https://upload-images.jianshu.io/upload_images/6865547-100e574111cf0696.png?imageMogr2/auto-orient/strip|imageView2/2/w/507/format/webp',
+  'https://tse4-mm.cn.bing.net/th/id/OIP-C.PzrAfqwH7QDyF-AGACAvyAHaFd?w=235&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.ffZbqc79eNP-xI3LqRULVQHaEo?w=274&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.G9pGzLHuWapC4dWnw-1PVAHaNK?w=115&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.jPdDv3VDyfn162vbT0buLAHaEo?w=274&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.3b0sfeEyUG4wXmT69zyKzwHaEK?w=303&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse4-mm.cn.bing.net/th/id/OIP-C.c06f2h7VnMagGN0w1ZFRFAHaF7?w=213&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse3-mm.cn.bing.net/th/id/OIP-C.CBRSObBHaX1dA_OqPdZSDQHaHt?w=163&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse3-mm.cn.bing.net/th/id/OIP-C.pfSvHtmpmAZrRPSvTIUX7wHaHB?w=179&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.Bc0XVkyftSlHnzFtdlUyAAHaEv?w=267&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.4wBfQJWi3n2zvWEVskyGYAHaEo?w=276&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse2-mm.cn.bing.net/th/id/OIP-C.zGXP-SdlX_UkuK-akHpeggHaEo?w=276&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse2-mm.cn.bing.net/th/id/OIP-C.UqvvLFmb8aLdeDs8_P6VLwHaEK?w=306&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.x_-LPRRQTeO88r02CAiUcwHaEo?w=275&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse2-mm.cn.bing.net/th/id/OIP-C.HiCEXpzbcUBRcrAc-Ckt6wHaFj?w=218&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse2-mm.cn.bing.net/th/id/OIP-C.RNCgk71yi-CLGuO_s5ZU1AHaEK?w=291&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.yoIeq6UsWUnvlduoSAOJaAHaI4?w=136&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse3-mm.cn.bing.net/th/id/OIP-C.-OXSGNKdA0Oy9IEeHRECxwHaFj?w=218&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse1-mm.cn.bing.net/th/id/OIP-C.U88OOHemN0yJzXpHaAAm4gHaEo?w=262&h=180&c=7&r=0&o=5&pid=1.7',
+  'https://tse4-mm.cn.bing.net/th/id/OIP-C.sBzbSUm298vGEpPDqIP_GQHaEi?w=303&h=185&c=7&r=0&o=5&pid=1.7',
 ];
 
 List<String> titleList = [
-  '创建瀑布流应用 ',
-  '1.新建应用 2.配置底部导航栏 ',
-  '3.引入布局插件 4.页面搭建 总结',
-  ' 前言 本文着眼于搭建一个瀑布流布',
-  '局的简化版Flutter应用，Jo',
-  'e大叔将从应用创',
+  "探索未知的世界：我的旅行日记",
+  "遇见不一样的自己：走出舒适区的旅行",
+  "放下束缚，拥抱自由：独自一人的旅行",
+  "与自然亲密接触：徒步旅行的美好体验",
+  "历史与文化的穿越之旅：探寻古老的城市遗迹",
+  "与美食同行：品尝各地美味的美食之旅",
+  "放松身心，重拾活力：度假村的休闲旅行",
+  "与家人共度时光：开启一段难忘的亲子旅行之旅",
+  "放下手机，与自己对话：数字游牧的旅行体验",
+  "跨越时空的旅行：发现异国他乡的魅力"
 ];
 
 List<String> nicknameList = [
@@ -115,11 +126,6 @@ class IndexRecommendView extends StatelessWidget {
           crossAxisSpacing: 8,
           pattern: const [
             WovenGridTile(1),
-            // WovenGridTile(
-            //   5 / 7,
-            //   crossAxisRatio: 1,
-            //   alignment: AlignmentDirectional.centerEnd,
-            // ),
           ],
         ),
         childrenDelegate: SliverChildBuilderDelegate((context, index) {

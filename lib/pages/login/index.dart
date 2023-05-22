@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
       final profileMap = jsonDecode(profile);
       GlobalObjects.storageProvider.user.uid = profileMap['uid'];
       await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return const InterestedPage();
+        return InterestedPage();
       }));
       if (!mounted) return;
       await Navigator.of(context).push(MaterialPageRoute(
