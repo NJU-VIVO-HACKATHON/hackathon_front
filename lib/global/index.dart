@@ -25,7 +25,7 @@ class GlobalObjects {
 
   static Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
-    // await prefs.clear();
+    await prefs.clear();
     kvStorage = KvStorageLogWrapper(
       source: KvStoragePreferenceImpl(prefs),
       logger: logger,

@@ -144,27 +144,28 @@ class _LoginPageState extends State<LoginPage> {
     });
     try {
       if (!mounted) return;
-      final api = GlobalObjects.apiProvider;
-      final authInfo = AuthInfo(
-        sms: widget.mode == AuthMode.sms ? _inputController.text : null,
-        email: widget.mode == AuthMode.email ? _inputController.text : null,
-        code: _authCodeController.text,
-      );
-      String token = await api.session.getAuthToken(
-        mode: widget.mode,
-        info: authInfo,
-      );
+      // final api = GlobalObjects.apiProvider;
+      // final authInfo = AuthInfo(
+      //   sms: widget.mode == AuthMode.sms ? _inputController.text : null,
+      //   email: widget.mode == AuthMode.email ? _inputController.text : null,
+      //   code: _authCodeController.text,
+      // );
+      String token = '';
+      // String token = await api.session.getAuthToken(
+      //   mode: widget.mode,
+      //   info: authInfo,
+      // );
       _log.d('jwt token: $token');
       if (!mounted) return;
       showBasicFlash(context, const Text('登录成功'));
-      GlobalObjects.storageProvider.user.jwtToken = token;
-      final profile = String.fromCharCodes(base64Decode(token.split('.')[1]));
-      _log.d('profile: $profile');
-      final profileMap = jsonDecode(profile);
-      GlobalObjects.storageProvider.user.uid = profileMap['uid'];
-      await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return InterestedPage();
-      }));
+      // GlobalObjects.storageProvider.user.jwtToken = token;
+      // final profile = String.fromCharCodes(base64Decode(token.split('.')[1]));
+      // _log.d('profile: $profile');
+      // final profileMap = jsonDecode(profile);
+      GlobalObjects.storageProvider.user.uid = 1;
+      // await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      //   return InterestedPage();
+      // }));
       if (!mounted) return;
       await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => const IndexPage(),

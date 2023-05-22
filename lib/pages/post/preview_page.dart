@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:markdown_widget/markdown_widget.dart';
 
 class PreviewPage extends StatelessWidget {
   final String title;
